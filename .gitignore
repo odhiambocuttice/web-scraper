@@ -5,9 +5,9 @@ __pycache__
 
 # Environments 
 .env 
-# .venv 
+.venv 
 env/ 
-# venv/ 
+venv/ 
 ENV/ 
 env.bak/ 
 venv.bak/ 
