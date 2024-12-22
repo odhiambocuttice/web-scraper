@@ -7,7 +7,6 @@ from typing import List, Type
 from bs4 import BeautifulSoup
 from pydantic import BaseModel, create_model
 import html2text
-import tiktoken
 
 from dotenv import load_dotenv
 from selenium import webdriver
@@ -103,7 +102,6 @@ def clean_html(html_content):
 
     return str(soup)
 
-
 def html_to_markdown_with_readability(html_content):
 
     cleaned_html = clean_html(html_content)  
@@ -131,15 +129,6 @@ def create_listings_container_model(listing_model: Type[BaseModel]) -> Type[Base
     Create a container model that holds a list of the given listing model.
     """
     return create_model('DynamicListingsContainer', listings=(List[listing_model], ...))
-
-
-def trim_to_token_limit(text, model, max_tokens=120000):
-    encoder = tiktoken.encoding_for_model(model)
-    tokens = encoder.encode(text)
-    if len(tokens) > max_tokens:
-        trimmed_text = encoder.decode(tokens[:max_tokens])
-        return trimmed_text
-    return text
 
 def generate_system_message(listing_model: BaseModel) -> str:
     """
