@@ -1,7 +1,6 @@
 from http.server import BaseHTTPRequestHandler
-from datetime import datetime
 import json
-from scraper import create_dynamic_listing_model, create_listings_container_model, fetch_html_selenium, format_data, html_to_markdown_with_readability, save_formatted_data
+from scraper import create_dynamic_listing_model, create_listings_container_model, fetch_html_selenium, format_data, html_to_markdown_with_readability
 
 class handler(BaseHTTPRequestHandler):
 
@@ -13,16 +12,11 @@ class handler(BaseHTTPRequestHandler):
             # Scrape data
             raw_html = fetch_html_selenium(url)
 
-            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-        
             # Scrape data
             raw_html = fetch_html_selenium(url)
         
             markdown = html_to_markdown_with_readability(raw_html)
             
-            # Save raw data
-            # save_raw_data(markdown, timestamp)
-
             # Create the dynamic listing model
             DynamicListingModel = create_dynamic_listing_model(fields)
 
