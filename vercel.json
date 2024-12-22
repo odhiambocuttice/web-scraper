@@ -4,16 +4,5 @@
             "source": "/",
             "destination": "/api"
         }
-    ],
-    "functions": {
-        "api/**": {
-            "memory": 1024,
-            "maxDuration": 30
-        }
-    },
-    "build": {
-        "env": {
-            "PYTHONPATH": "/var/task"
-        }
-    }
+    ]
 }
