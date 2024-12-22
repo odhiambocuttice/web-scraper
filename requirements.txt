@@ -6,3 +6,4 @@ selenium
 readability-lxml
 groq
 webdriver-manager
+tiktoken
