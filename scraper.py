@@ -307,3 +307,4 @@ def save_formatted_data(formatted_data, timestamp, output_folder='output'):
     except Exception as e:
         print(f"Error creating DataFrame or saving Excel: {str(e)}")
         return None
+
