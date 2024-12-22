@@ -241,20 +241,46 @@ load_dotenv()
 
 #     return driver
 
+# def setup_selenium():
+#     # Set the path for the driver cache
+#     os.environ["WD_CACHE"] = "/tmp"  # Drivers will be stored in /tmp
+
+#     options = Options()
+
+#     # Add custom options, e.g., user agent or headless mode
+#     user_agent = random.choice(USER_AGENTS)
+#     options.add_argument(f"user-agent={user_agent}")
+
+#     for option in HEADLESS_OPTIONS:
+#         options.add_argument(option)
+
+#     # Install the driver and use it
+#     service = Service(ChromeDriverManager().install())
+#     driver = webdriver.Chrome(service=service, options=options)
+
+#     return driver
+
 def setup_selenium():
-    # Set the path for the driver cache
-    os.environ["WD_CACHE"] = "/tmp"  # Drivers will be stored in /tmp
+    import tempfile
+
+    # Create a temporary directory for storing the driver
+    os.environ["WDM_LOCAL"] = tempfile.mkdtemp()  # Use a writable temporary directory
 
     options = Options()
 
-    # Add custom options, e.g., user agent or headless mode
+    # Set a random user agent
     user_agent = random.choice(USER_AGENTS)
     options.add_argument(f"user-agent={user_agent}")
 
+    # Add headless options (required for server environments)
     for option in HEADLESS_OPTIONS:
         options.add_argument(option)
 
-    # Install the driver and use it
+    options.add_argument("--headless")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+
+    # Initialize ChromeDriver with the correct service
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)
 
