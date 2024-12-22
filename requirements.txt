@@ -1,8 +1,15 @@
-python-dotenv
-requests
+# python-dotenv
+# requests
+# beautifulsoup4
+# html2text
+# selenium
+# groq
+# webdriver-manager
+# pydantic
+
+playwright
 beautifulsoup4
 html2text
-selenium
-groq
-webdriver-manager
 pydantic
+groq
+python-dotenv
